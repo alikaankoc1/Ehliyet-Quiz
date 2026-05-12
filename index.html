@@ -1,75 +1,65 @@
+<!DOCTYPE html>
+<html lang="tr">
 <head>
-     <!-- Sayfa meta bilgileri -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <!-- Bootstrap ve Font Awesome CSS dosyalarının bağlantıları -->
+    <meta name="theme-color" content="#0f2744">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    <!-- Özel stil dosyasının bağlantısı -->
     <link rel="stylesheet" href="style.css">
-     <!-- Sayfa başlığı -->
-    <title>Sınav Uygulaması</title>
-<style type="text/css" id="operaUserStyle"></style></head>
-
-
+    <title>Ehliyet Sınav Uygulaması</title>
+</head>
 <body>
-     
-       <!-- Sınav başlatma butonu -->
-    <div class="btn_start">
-        <button class="btn btn-warning btn-lg">Sınava Başla</button>
-    </div>
+    <div class="app-backdrop" aria-hidden="true"></div>
 
-      <!-- Sınav kartı -->
-    <div class="card quiz_box">
-        <header class="card-header">
-
-             <!-- Başlık -->
-            <div class="title">Ehliyet Sınav Uygulaması</div>
-            
-             <!-- Zamanlayıcı -->
-            <div class="timer">
-                <div class="time_text">Kalan Süre</div>
-                <div class="time_second">10</div>
-            </div>
-            <!-- Zaman çizgisi -->
-            <div class="time_line"></div>
-        </header>
-        <section class="card-body">
-             <!-- Soru metni -->
-            <div class="question_text">
-               
-            </div>
-            <!-- Seçenek listesi -->
-            <div class="option_list">
-            
-            </div>
-        </section>
-        <footer class="card-footer">
-             <!-- Soru indeksi -->
-            <div class="question_index">            
-            </div>
-            <!-- Sonraki soru butonu -->
-            <button class="next_btn btn btn-primary btn-sm">Sonraki Soru</button>
-        </footer>
-    </div>
-
-     <!-- Skor kartı -->
-    <div class="card score_box">
-        <div class="icon"><i class="fa-solid fa-car"></i></div>
-        <div class="score_text"></div>
-        <div class="buttons">
-            <!-- Tekrar başlatma ve testi bitirme butonları -->
-            <button class="btn btn-warning btn_replay">Tekrar Başlat</button>
-            <button class="btn btn-warning btn_quit">Testi Bitir</button>
+    <main class="app-main">
+        <div class="btn_start">
+            <p class="app-tagline">Kendinizi test edin</p>
+            <h1 class="app-title">Ehliyet Sınavı</h1>
+            <button type="button" class="btn btn-start-cta btn-lg">Sınava Başla</button>
         </div>
-    </div>
-    
 
-    <!-- JavaScript dosyalarının bağlantıları -->
+        <div class="card quiz_box shadow-lg">
+            <header class="card-header quiz-header">
+                <div class="title-wrap">
+                    <span class="title-badge">Quiz</span>
+                    <div class="title">Ehliyet Sınav Uygulaması</div>
+                </div>
+                <div class="timer" role="timer" aria-live="polite">
+                    <div class="time_text">Kalan Süre</div>
+                    <div class="time_second" aria-label="saniye">10</div>
+                </div>
+                <div class="time_line_wrap">
+                    <div class="time_line"></div>
+                </div>
+            </header>
+            <section class="card-body quiz-body">
+                <div class="question_text"></div>
+                <div class="option_list"></div>
+            </section>
+            <footer class="card-footer quiz-footer">
+                <div class="question_index"></div>
+                <button type="button" class="next_btn btn btn-next btn-sm">Sonraki Soru</button>
+            </footer>
+        </div>
+
+        <div class="card score_box shadow-lg">
+            <div class="icon"><i class="fa-solid fa-car" aria-hidden="true"></i></div>
+            <div class="score_text"></div>
+            <div class="buttons">
+                <button type="button" class="btn btn-score btn_replay">Tekrar Başlat</button>
+                <button type="button" class="btn btn-score-outline btn_quit">Testi Bitir</button>
+            </div>
+        </div>
+    </main>
+
     <script src="soru.js"></script>
     <script src="quiz.js"></script>
     <script src="ui.js"></script>
     <script src="script.js"></script>
-
 </body>
+</html>

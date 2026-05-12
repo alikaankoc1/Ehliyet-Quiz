@@ -99,17 +99,21 @@ function startTimer(time) {
 
 let counterLine;
 function startTimerLine() {
-    let line_width = 0;
+    ui.time_line.style.width = "0%";
+    let linePercent = 0;
+    const step = 100 / 500;
 
     counterLine = setInterval(timer, 20);
 
     function timer() {
-        line_width += 1;
-        ui.time_line.style.width = line_width + "px";
-
-        if(line_width > 549) {
+        linePercent += step;
+        if (linePercent >= 100) {
+            linePercent = 100;
+            ui.time_line.style.width = "100%";
             clearInterval(counterLine);
+            return;
         }
+        ui.time_line.style.width = linePercent + "%";
     }
 }
 

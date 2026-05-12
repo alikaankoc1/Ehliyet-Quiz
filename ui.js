@@ -1,5 +1,5 @@
 function UI() {
-    this.btn_start = document.querySelector(".btn_start"),
+    this.btn_start = document.querySelector(".btn_start .btn-start-cta, .btn_start button"),
     this.btn_next = document.querySelector(".next_btn"),
     this.btn_replay = document.querySelector(".btn_replay"),
     this.btn_quit = document.querySelector(".btn_quit"),
