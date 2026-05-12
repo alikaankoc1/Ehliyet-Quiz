@@ -32,15 +32,21 @@
 
 html {
     -webkit-text-size-adjust: 100%;
+    overflow-x: hidden;
+    overflow-x: clip;
 }
 
 body {
     margin: 0;
+    min-height: 100vh;
+    min-height: 100svh;
     min-height: 100dvh;
     font-family: var(--font);
     color: var(--text);
     background: linear-gradient(160deg, var(--bg-deep) 0%, var(--bg-mid) 45%, #1e3a5f 100%);
     line-height: 1.5;
+    overflow-x: clip;
+    -webkit-tap-highlight-color: rgba(245, 158, 11, 0.15);
 }
 
 .app-backdrop {
@@ -56,12 +62,14 @@ body {
 .app-main {
     position: relative;
     z-index: 1;
+    isolation: isolate;
+    min-height: 100vh;
+    min-height: 100svh;
     min-height: 100dvh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: clamp(1rem, 4vw, 2rem);
-    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+    padding: max(1rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right)) max(1rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
 }
 
 /* Start screen */
@@ -99,6 +107,9 @@ body {
     padding: 0.75rem 2rem;
     border-radius: var(--radius-md);
     box-shadow: 0 10px 25px -5px rgba(245, 158, 11, 0.45);
+    width: 100%;
+    max-width: 20rem;
+    touch-action: manipulation;
 }
 
 .btn-start-cta:focus-visible {
@@ -134,7 +145,7 @@ body {
     z-index: 2;
     display: flex;
     flex-direction: column;
-    max-height: min(92dvh, 52rem);
+    max-height: min(92svh, 92dvh, 52rem);
     transform: translate(-50%, -50%) scale(0.94);
     transition: opacity 0.35s ease, transform 0.35s ease;
     opacity: 0;
@@ -220,6 +231,7 @@ body {
     gap: 0.75rem;
     background: var(--surface);
     transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+    touch-action: manipulation;
 }
 
 .quiz_box .option_list .option span {
@@ -298,6 +310,8 @@ body {
     --bs-btn-font-weight: 600;
     padding: 0.5rem 1.125rem;
     border-radius: var(--radius-md);
+    min-height: 2.75rem;
+    touch-action: manipulation;
 }
 
 .quiz_box .quiz-footer.card-footer {
@@ -420,6 +434,8 @@ body {
     font-weight: 600;
     padding: 0.65rem 1.25rem;
     border-radius: var(--radius-md);
+    min-height: 2.75rem;
+    touch-action: manipulation;
 }
 
 .btn-score {
@@ -436,6 +452,87 @@ body {
     --bs-btn-bg: var(--surface);
     --bs-btn-hover-bg: var(--surface-muted);
     --bs-btn-hover-border-color: #cbd5e1;
+}
+
+/* Telefon ve dar ekran: üstten hizala (dikey ortalama kesilir); çentik / home bar için güvenli alan */
+@media (max-width: 639.98px) {
+    .app-main {
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+
+    .btn_start,
+    .quiz_box,
+    .score_box {
+        left: max(0.5rem, env(safe-area-inset-left));
+        right: max(0.5rem, env(safe-area-inset-right));
+        top: max(0.5rem, env(safe-area-inset-top));
+        width: auto;
+        max-width: none;
+        margin: 0;
+        transform-origin: top center;
+    }
+
+    .btn_start {
+        transform: none;
+        padding: 0.25rem 0 0.5rem;
+    }
+
+    .quiz_box {
+        transform: scale(0.98);
+        max-height: calc(100svh - max(0.5rem, env(safe-area-inset-top)) - max(0.75rem, env(safe-area-inset-bottom)) - 0.75rem);
+    }
+
+    .quiz_box.active {
+        transform: scale(1);
+    }
+
+    .score_box {
+        transform: scale(0.98);
+        max-height: calc(100svh - max(0.5rem, env(safe-area-inset-top)) - max(0.75rem, env(safe-area-inset-bottom)) - 0.75rem);
+    }
+
+    .score_box.active {
+        transform: scale(1);
+    }
+
+    .quiz_box .quiz-header.card-header {
+        padding: 0.875rem 1rem 1.25rem;
+    }
+
+    .quiz_box .quiz-footer.card-footer {
+        padding: 0.875rem 1rem;
+        flex-direction: column-reverse;
+        align-items: stretch;
+        gap: 0.625rem;
+    }
+
+    .quiz_box .question_index {
+        text-align: center;
+    }
+
+    .quiz_box .next_btn {
+        width: 100%;
+    }
+
+    .quiz_box .quiz-body.card-body {
+        padding: 0.875rem 1rem 1rem;
+    }
+
+    .quiz_box .option_list .option {
+        min-height: 3.25rem;
+        padding: 1rem 0.875rem;
+    }
+
+    .score_box .buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .score_box .buttons .btn {
+        width: 100%;
+        max-width: none;
+    }
 }
 
 @media (max-width: 380px) {
